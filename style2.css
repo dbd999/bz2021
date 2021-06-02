@@ -1,0 +1,106 @@
+body{
+    font-family:"Jost", sans-serif ;
+}
+table{
+    border-collapse: collapse;
+    width: 100%;
+    /* border: 1px solid black; */
+    margin-bottom: 50px;
+
+}
+table:nth-child(1){background-color:rgb(255, 0, 0, 0.5);}
+table:nth-child(2){background-color:rgb(0, 255, 0, 0.5);}
+table:nth-child(3){background-color:rgb(0, 0, 255, 0.5);}
+table:nth-child(4){background-color:rgb(0, 255, 255, 0.5);}
+table:nth-child(5){background-color:rgb(255, 255, 0, 0.5);}
+table:nth-child(6){background-color:rgb(255, 0, 255, 0.5);}
+table:nth-child(7){background-color:rgb(100, 0, 0, 0.5);}
+table:nth-child(8){background-color:rgb(200, 0, 0, 0.5);}
+table:nth-child(9){background-color:rgb(0, 100, 0, 0.5);}
+
+
+
+.table{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.table table{
+    max-width: 600px;
+}
+ul{
+    margin: 0;
+}
+tr{}
+td{
+    /* border: 1px solid black; */
+    padding: 0 5px;
+    vertical-align: baseline;
+}
+.alignCenter{
+    text-align: center;
+}
+p,h2,h3{
+    margin: 0;
+    font-size: 16px;
+    line-height: 2.5em;
+}
+h3{
+    font-weight: 400;
+}
+p{
+    text-align: center;
+}
+[data-weight]{
+    font-weight: 900;
+}
+[data-color]{
+    color: red;
+}
+/* p:first-of-type{} */
+/* table:nth-child(5) td{
+    text-align: center;
+} */
+.lasTable table{
+    background-color: rgb(243, 243, 243);
+}
+.lasTable td{
+}
+.lasTable p{
+    line-height: 1.5em;
+    text-align: center;
+}
+.lasTable h3{
+    padding-left: 10px;
+}
+.tableHeader{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.tableHeader td{
+}
+.lasTable
+tr:nth-child(1) td{
+    border-left: 1px solid white;
+}
+.lasTable
+tr td:not(:first-of-type){
+    border-left: 1px solid black;
+}
+.lasTable tr:nth-child(2),
+.lasTable tr:nth-child(3),
+.lasTable tr:nth-child(4),
+.lasTable tr:nth-child(5),
+.lasTable tr:nth-child(10),
+.lasTable tr:nth-child(11),
+.lasTable tr:nth-child(16),
+.lasTable tr:nth-child(17){
+    background-color: rgb(206, 204, 204);
+}
+.reDot{
+    color: red;
+}
+.agreg h2{
+    text-align: right;
+}
