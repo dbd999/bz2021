@@ -1,0 +1,328 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru" class="mail-Page_with_Timeline mail-Page mail-Page_3pane-horizontal m-locale_ru notranslate js-page feature-save-to-disk-button feature-web-enable-react-ps-header feature-yandex-plus feature-web-ps-header feature-web-react-ps-header feature-web_ad_on_yes_mail_pro feature-web_mail-pro-onboarding feature-web_mail-360-no-disk-20gb feature-web_docs_header_exp feature-web-b2c-domain feature-web-b2c-domain-promos feature-web-mailbox-backup feature-web-mail360-logo_newtab_control feature-web_turn-off-ns-compose-promo feature-web_aligned-direct feature-web_captcha-type-wave feature-web_interactive-email feature-web_telegram-bot-promo feature-web_pro_button_left_column_without_label feature-web_pro_promo_left_column feature-web_suggest-delete-on-spam feature-web_disable-ns-compose-immediately feature-web_disable-ns-compose feature-speedup blobconstructor blob-constructor geolocation filereader classlist cssgradients supports cssanimations borderimage csstransforms csstransforms3d csstransitions cssmask highresdisplay no-is-pdd draganddrop draganddrop-files input-multiple classlist-second-arg no-msie webkit no-opera no-mozilla no-edge no-safari no-ie9 no-ie10 no-ie11 no-ielt11 no-ios no-mac m-loaded theme-region_perm m-skin-11 with-dark-page with-dark-aside" id="nb-1" data-nb="nb-0">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="referrer" content="origin">
+<meta name="google" value="notranslate">
+<meta name="msapplication-TileColor" content="#FFFFFF">
+<meta name="msapplication-TileImage" content="/u2709/favicon/png/main-favicon/144/main-favicon.png">
+<link rel="stylesheet" href="style.css" type="text/css" />
+<title>MFU</title>
+<style type="text/css"></style>
+<script src="https://bzemlya.ru/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp"></script>
+</head>
+<body>
+
+<script>(function($){
+	$.fn.image360 = function(options) {
+		
+		// настройки
+		var settings = $.extend( {
+			'count_loop': 10, // количество оборотов на ширину блока
+		}, options);
+		
+		var $main_div = this, // блок с картинками
+			div_width, // ширина блока
+			count_imgs = 0, // количество картинок
+			start_drag = false, // старт анимации
+			position_X = 0, // положение курсора над картинкой
+			index_img = 0, // индекс отображаемой картинки
+			last_perc = 0, // предыдущее положение курсора относительно блока в процентах
+			direction = true; // направление движения мыши true - влево, false -  вправо
+						
+		var methods = {
+			
+			init: function(settings) { 	
+				// ширина блока
+				div_width = $main_div.width();
+				// подготовка картинок
+				$main_div.find("img").each(function(num){
+					if(num != 0){
+						jQuery(this).hide();
+					}
+				});
+				count_imgs = $main_div.find("img").length;
+			},
+			
+			move_imgs: function(positionX){
+				if(positionX < 0 ) positionX = 0;
+				if(positionX > div_width) positionX = div_width;
+				var percent_div = (positionX / div_width) * 100;
+				var percent_img = 100 / (settings.count_loop * count_imgs); 	
+				if( Math.abs(percent_div - last_perc) > percent_img){
+					last_perc = percent_div;	
+					if(direction){
+						index_img--;
+					}else{
+						index_img++;
+					}
+					if(index_img < 0) index_img = (count_imgs - 1);
+					if(index_img > (count_imgs - 1)) index_img = 0;
+					$main_div.find("img").hide();
+					$main_div.find("img").eq(index_img).show();
+				}			
+			},
+			
+			resize: function(){
+				div_width = $main_div.width();
+			},
+			
+		};
+		
+		$main_div.bind('mousedown touchstart touchmove touchend mousemove click', function (e) {				
+			//e.preventDefault();
+			if(e.type === 'mousedown' || e.type === 'touchstart'){
+				// клик или тач
+				// старт
+				start_drag = true;
+				position_X = e.pageX;
+				
+			}else if(e.type === 'touchmove'){
+				// движение тач
+				if(start_drag){
+					var touch = e.originalEvent.touches[0];
+					// движение влево
+					if(position_X > touch.pageX){
+						direction = true;
+					}
+					// движение вправо
+					if(position_X < touch.pageX){
+						direction = false;
+					}
+					position_X = touch.pageX;
+					var offset_div = $main_div.offset();
+					var positionX = (touch.pageX - offset_div.left);
+					// анимация
+					methods.move_imgs(positionX);					
+				}
+			} else if (e.type === 'touchend') {
+				// отпустили тач
+				start_drag = false;
+			}
+		});
+		
+		// движение мышки
+		$main_div.bind('mousemove', function (e) {
+			e.preventDefault();
+			if(start_drag){				
+				// движение влево
+				if(position_X > e.pageX){
+					direction = true;
+				}
+				// движение вправо
+				if(position_X < e.pageX){
+					direction = false;
+				}
+				position_X = e.pageX;
+				var offset_div = $main_div.offset();
+				var positionX = (e.pageX - offset_div.left);
+				// анимация
+				methods.move_imgs(positionX);					
+			}
+		});
+		
+		// остановка, если отпустили конпку мышки
+		jQuery(document).bind('mouseup', function (e) {
+			start_drag = false;
+		});	
+		
+		jQuery(window).resize(function() {
+			methods.resize();
+		});
+			
+		methods.init(settings);
+	};
+})( jQuery );
+</script>
+<div class="wrapper">
+<div id="rotation">		
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU05.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU06.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU07.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU08.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU09.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU10.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU11.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU12.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU13.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU14.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU15.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU16.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU17.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU18.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU19.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU20.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU21.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU22.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU23.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU24.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU25.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU26.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU27.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU28.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU29.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU30.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU31.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU32.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU33.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU34.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU35.jpg">
+   	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU36.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU37.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU38.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU39.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU40.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU41.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU42.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU43.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU44.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU45.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU46.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU47.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU48.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU49.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU50.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU51.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU52.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU53.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU54.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU55.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU56.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU57.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU58.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU59.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU60.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU00.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU01.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU02.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU03.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU04.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU05.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU06.jpg">
+	<img src="https://wp.uralelektroremont.ru/wp-content/uploads/bz2021/MFU07.jpg">
+	
+	<div class="btnBlock">
+		<button id='scale'>
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{enable-background:new    ;}
+	.st1{fill:#000101;}
+</style>
+<g id="Rounded_Rectangle_1_1_" class="st0">
+	<g id="Rounded_Rectangle_1">
+		<path class="st1" d="M14,1c5,0,9,4,9,9v4c0,5-4,9-9,9h-4c-5,0-9-4-9-9v-4c0-5,4-9,9-9H14 M14,0h-4C4.5,0,0,4.5,0,10v4    c0,5.5,4.5,10,10,10h4c5.5,0,10-4.5,10-10v-4C24,4.5,19.5,0,14,0L14,0z"/>
+	</g>
+</g>
+<g id="_x2B_">
+	<g>
+		<path d="M12.9,11.2h2.7v1.6h-2.7v2.7h-1.7v-2.7H8.4v-1.6h2.7V8.4h1.7V11.2z"/>
+	</g>
+</g>
+</svg>
+		</button>
+		<button id='unscale'>
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+<style type="text/css">
+	.st0{enable-background:new    ;}
+	.st1{fill:#999;}
+</style>
+<g id="Rounded_Rectangle_1_1_" class="st0">
+	<g id="Rounded_Rectangle_1">
+		<path class="st1" d="M14,1c5,0,9,4,9,9v4c0,5-4,9-9,9h-4c-5,0-9-4-9-9v-4c0-5,4-9,9-9H14 M14,0h-4C4.5,0,0,4.5,0,10v4    c0,5.5,4.5,10,10,10h4c5.5,0,10-4.5,10-10v-4C24,4.5,19.5,0,14,0L14,0z"/>
+	</g>
+</g>
+<g id="_x2B_">
+	<g>
+		<path d="M15.6,11.2v1.6H8.4v-1.6H15.6z"/>
+	</g>
+</g>
+</svg>
+		</button>
+	</div>
+</div> 
+<div class="blocker"></div>
+</div>
+
+<div class="rotation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 156.7 143.91"><defs><style>.a{fill:#999;}</style></defs><title>icon Around Hand Spin 360</title>
+    <path class="a" d="M96.87,134a6.36,6.36,0,1,0,6.36-6.37A6.36,6.36,0,0,0,96.87,134m7.2-9.94v-1.92c0-4.28,1.46-8.47,3-12.91,1.87-5.36,4-11.43,4-18.87v-7c0-4.31-1.23-7.55-3.65-9.61s-5.5-2.72-9.56-2.29a10.06,10.06,0,0,0-5-3,9.84,9.84,0,0,0-6.27.23c-3.63-3-10.65-3.2-14-1.47-.1-.11-.3-22.84-.3-23a6,6,0,0,0-6-5.77c-4.75,0-8.07,4.2-8.07,8.92v33.9c-2.12-.35-8.84,2.6-10.38,4.06-4.43,4.2-2,16.19.44,18.68a70,70,0,0,0,6.87,5.58c4.23,3.17,10.61,8,10.61,10.56v3.94ZM116.12,89.4a54.25,54.25,0,0,1-4.67,22.79c-1.42,3.5-2.64,6.52-2.72,10.09l0,1.52,1.48.38a4,4,0,0,1,3,3.88v11.85a4,4,0,0,1-4,4H64.71a4,4,0,0,1-4-4v-19l-.48-.55a59.06,59.06,0,0,0-7.88-6.58c-2.8-2.11-5.9-4.1-7.65-6.24C41,103,37.8,92.33,43.51,82.24c1.9-3.36,9.66-5.51,9.66-5.51V47.33c0-8.35,6.35-14,13.07-14,6.43,0,10.92,6.3,11.09,9.27s.29,11.86.29,18.43a18.07,18.07,0,0,1,9.46,1.8l.53.28.61-.08a16,16,0,0,1,11,2.87l.48.36h.61c10.31.18,15.76,6.75,15.76,19Z"/>
+    <path class="a" d="M31.18,59.4C11.36,53.24,0,43.6,0,32.94,0,14.47,34.41,0,78.35,0S156.7,14.47,156.7,32.94c0,10-9.72,19-27.38,25.2l-1.73-4.92c15.19-5.37,23.9-12.76,23.9-20.28,0-13.39-29.39-27.73-73.14-27.73S5.21,19.55,5.21,32.94c0,8.1,10.29,16.13,27.51,21.48Z"/>
+    <path class="a" d="M29.51,66.41l8.69-7.75L35,47.53a1.24,1.24,0,0,0-2.38,0L27.52,65.16A1.22,1.22,0,0,0,29.51,66.41Z"/>
+    <path class="a" d="M131.21,65l-8.94-7.37,2.82-11.29a1.22,1.22,0,0,1,2.35-.09l5.74,17.41A1.24,1.24,0,0,1,131.21,65Z"/></svg>
+</div> 
+
+
+<script>
+	jQuery(document).ready(function(){
+		jQuery("#rotation").image360();
+		var scaledEl = document.getElementById('rotation')
+		var btnScale = document.getElementById('scale')
+		var btnUnScale = document.getElementById('unscale')
+		btnScale.onclick = function () {
+			scaledEl.classList.add('scaled')
+		}
+		btnUnScale.onclick = function () {
+			scaledEl.classList.remove('scaled')
+		}
+	});		
+</script>
+
+<table id="table001" class="Basic-Table"  border=1>
+<colgroup>
+	<col class="Column-1" width="250" valign="top"/>
+	<col class="Column-2" />
+	<col class="Column-3" />
+</colgroup>
+<tbody>
+<tr>
+	<td colspan="3" class="ttx">
+		<p>ТЕХНИЧЕСКИЕ ХАРАКТЕРИСТИКИ</p>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<p>Грузоподъёмность, кг</p>
+	</td>
+	<td>
+		<p>1000</p>
+	</td>
+</tr>
+<tr>
+	<td>
+		<p>Габариты, мм</p>
+	</td>
+	<td>
+		<p>длина</p>
+		<p>ширина</p>
+		<p>высота</p>
+	</td>
+	<td>
+		<p>1600</p>
+		<p>1550</p>
+		<p>1500</p>
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+		<p>Масса, кг</p>
+	</td>
+	<td>
+		<p>140</p>
+	</td>
+</tr>
+</tbody>
+</table>
+
+<div>
+	<p>Сочетает в себе 3 инструмента:</p>
+	<ul>
+		<li>Грузоподъёмное устройство для мягких контейнеров большого объёма (Биг-Бэг) сыпучими материалами;</li>
+		<li>Вилы универсальные с регулируемой пикой для&#160;готовых тюков (сена, силоса, соломы и др.) без упаковки;</li>
+		<li>Грузоподъёмное устройство для различных грузов;</li>
+		<li>Инструмент подходит для работы с&#160;тюками разных диаметров, так как центральная пика регулируется, нижние кованые пики снимаются</li>
+	</ul>
+</div>
+
+</body></html>
