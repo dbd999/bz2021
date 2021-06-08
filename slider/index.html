@@ -1,47 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+      crossorigin="anonymous"
+    ></script>
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper">
-        <div class="ulList">
-            <div class="ulItem">
-                <p class="accordion">ТЕКСТ</p>
-                <ul class="panel">
-                    <li>Текст</li>
-                    <li>Текст</li>
-                    <li>Текст</li>
-                </ul>
-            </div>
-            <div class="ulItem">
-                <p class="accordion">ТЕКСТ</p>
-                <ul class="panel">
-                    <li>Текст</li>
-                    <li>Текст</li>
-                    <li>Текст</li>
-                </ul>
-            </div>
-            <div class="ulItem">
-                <p class="accordion">ТЕКСТ</p>
-                <ul class="panel">
-                    <li>Текст</li>
-                    <li>Текст</li>
-                    <li>Текст</li>
-                </ul>
-            </div>
+      <div class="ulList">
+        <div class="ulItem">
+          <p id="firstAcc" class="accordion">ТЕКСТ</p>
+          <ul class="panel">
+            <li>Текст</li>
+            <li>Текст</li>
+            <li>Текст</li>
+          </ul>
         </div>
-        <div class="imgBlock">
-            <img class="img" src="./Tulips.jpg" alt="">
-            <img class="img" src="./Hydrangeas.jpg" alt="">
-            <img class="img" src="./Chrysanthemum.jpg" alt="">
+        <div class="ulItem">
+          <p id="secondAcc" class="accordion">ТЕКСТ</p>
+          <ul class="panel">
+            <li>Текст</li>
+            <li>Текст</li>
+            <li>Текст</li>
+          </ul>
         </div>
+        <div class="ulItem">
+          <p id="thirdAcc" class="accordion">ТЕКСТ</p>
+          <ul class="panel">
+            <li>Текст</li>
+            <li>Текст</li>
+            <li>Текст</li>
+          </ul>
+        </div>
+      </div>
+      <div class="imgBlock">
+        <div id="firstAccImg" class="imgContainer active">
+          <img class="img" src="./Tulips.jpg" alt="" />
+        </div>
+        <div id="secondAccImg" class="imgContainer">
+          <img class="img" src="./Hydrangeas.jpg" alt="" />
+        </div>
+        <div id="thirdAccImg" class="imgContainer">
+          <img class="img" src="./Chrysanthemum.jpg" alt="" />
+        </div>
+      </div>
     </div>
 
-    <script src="/script.js"></script>
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>

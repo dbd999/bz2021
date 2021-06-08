@@ -1,19 +1,24 @@
-var acc = document.getElementsByClassName("accordion");
-var img = document.querySelector(".img");
-
-
-var i;
-
-for (i = 0; i < acc.length; i++) {
-    acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var panel = this.nextElementSibling;
-        img.classList.toggle('kek')
-        if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-        } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-    });
-}
-
+$('.ulList .accordion').on('click', (e) => {
+    const ulBlock = $('.ulList .ulItem')
+    const parentBlock = $(e.target).parent()
+    if (parentBlock.hasClass('show')) {
+      return
+    }
+  
+    ulBlock.children('.panel').slideUp()
+    ulBlock.removeClass('show')
+  
+    parentBlock.children('.panel').slideToggle('slow', () => {
+      parentBlock.toggleClass('show')
+    })
+  
+    const imageBlock = $('.imgBlock')
+    const selector = '#' + e.target.id + 'Img'
+  
+    const showedImg = $(selector)
+  
+    //console.log(showedImg)
+    imageBlock.children('.imgContainer').removeClass('active')
+    showedImg.addClass('active')
+  })
+  
