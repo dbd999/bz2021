@@ -1,6 +1,7 @@
-﻿/*@charset "utf-8";
+﻿@charset "utf-8";
 <style TYPE="TEXT/CSS">
 
+/*
 tbody {
     display: table-row-group;
     vertical-align: middle;
@@ -33,5 +34,4 @@ html, .l-header .widget {
     line-height: 24px;
 }
 
-* html body #container {height:100%;}
-/*==========================================*/
+==========================================*/
